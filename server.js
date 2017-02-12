@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
  * DATABASE *
  ************/
 
-// var db = require('./models');
+var db = require('./models');
 
 /**********
  * ROUTES *
@@ -48,22 +48,73 @@ app.get('/api', function apiIndex(req, res) {
   res.json({
     woopsIForgotToDocumentAllMyEndpoints: false, // CHANGE ME ;)
     message: "Welcome to my personal api! Here's what you need to know!",
-    documentationUrl: "https://github.com/cnwilliams/express-personal-api/README.rd", // CHANGE ME
-    baseUrl: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
+    documentationUrl: "https://github.com/cnwilliams/express-personal-api/README.rd",
+    baseUrl: "https://shrouded-falls-45449.herokuapp.com/",
     currentCity: "San Francisco",
     // isAwake: boolean,
     // favoriteIceCreamFlavor: "Mint Chocolate Chip",
     endpoints: [
-      {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {
+        method: "GET",
+        path: "/api",
+        description: "Describes all available endpoints"
+      },
+      {
+        method: "GET",
+        path: "/api/profile",
+        description: "Data about me"
+      },
+      {
+        method: "GET",
+        path: "/api/destinations",
+        description: "Existing destinations in database"
+      },
+      {
+        method: "POST",
+        path: "/api/destinations",
+        description: "Creates a new destination entry"
+      },
+      {
+        method: "PUT",
+        path: "/api/destinations/:id",
+        description: "Edit a previous destination entry and update it"
+      },
+      {
+        method: "DELETE",
+        path: "/api/destinations/:id",
+        description: "Destroy an entry"
+      },
     ]
-  })
+  });
 });
+
+
+
 
 /**********
  * SERVER *
  **********/
+
+ // get all destinations
+ app.get('/api/destination', function (req, res) {
+   // find one book by its id
+   db.Destination.find({})
+     // .populate()  ONLY USE FOR REFERENCE DATA
+     // .exec (function(err, books){
+       if (err) {
+         res.status(500).send(err);
+         return;
+       }
+        console.log(destination)
+       res.json(destination);
+     });
+
+
+
+
+
+
+
 
 // listen on port 3000
 app.listen(process.env.PORT || 3000, function () {

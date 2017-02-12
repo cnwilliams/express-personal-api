@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var DestinationSchema = new Schema({
   country: String,
-  budgetFriendly: Boolean
+  budgetFriendly: Boolean,
   // gps: {
   //   latitude: Number,
   //   longitude: Number
