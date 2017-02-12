@@ -11,6 +11,6 @@ var DestinationSchema = new Schema({
   image: String
 });
 
-var Destination = mongoose.model('Destination', DestinationSchema);
+var Destination = mongoose.model("Destination", DestinationSchema);
 
 module.exports = Destination;

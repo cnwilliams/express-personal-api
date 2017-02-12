@@ -96,18 +96,19 @@ app.get('/api', function apiIndex(req, res) {
  **********/
 
  // get all destinations
- app.get('/api/destination', function (req, res) {
+ app.get('/api/destinations', function (req, res) {
    // find one book by its id
    db.Destination.find({})
-     // .populate()  ONLY USE FOR REFERENCE DATA
-     // .exec (function(err, books){
+     // .populate() // ONLY USE FOR REFERENCE DATA
+     .exec (function(err, destination){
        if (err) {
          res.status(500).send(err);
          return;
        }
-        console.log(destination)
-       res.json(destination);
+      console.log(destination);
+      res.json(destination);
      });
+  });
 
 
 
