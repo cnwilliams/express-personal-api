@@ -12,3 +12,12 @@ http://cache-graphicslib.viator.com/graphicslib/thumbs674x446/5885/SITours/viato
 
 China:
 http://www.chinatourguide.com/china_photos/beijing/attractions/beijing_mutianyu_red_leaves.jpg
+
+world-map1:
+https://s-media-cache-ak0.pinimg.com/originals/2a/e5/22/2ae522b85376684e91da43fb1b4573d9.jpg
+
+world-map2:
+https://s-media-cache-ak0.pinimg.com/originals/3b/a1/3a/3ba13a2fe1a3beed62dd8986f8fdbb8a.jpg
+
+world-map3:
+https://wheretheseameetsthesky.files.wordpress.com/2013/09/watercolor.jpg

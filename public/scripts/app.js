@@ -85,12 +85,14 @@ function render() {
 
     for (var i = 0; i < json.length; i++){
       $(".destinationTarget").append(`
+        <br>
         <hr>
         <p>
           <br>
-          <b>Country:</b>
-          ${json[i].countryName}
-          <img class="col-md-3" src= ${json[i].image}>
+          <h3><b>Country:</b>
+          ${json[i].countryName} </h3>
+          <img class="img-responsive center-block" src= ${json[i].image}>
+          <br>
           <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${json[i]._id}>x</button>
         </p>
 
