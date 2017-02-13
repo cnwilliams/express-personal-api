@@ -10,7 +10,7 @@ $(document).ready(function(){
   $.ajax({
     method: "GET",
     url: "/api/destinations",
-    // data: $(this).serialize(),
+    data: $(this).serialize(),
     success: handleSuccess,
     error: handleError
   });
@@ -83,11 +83,12 @@ function render () {
 
   function handleSuccess(json) {
 
-    // for (var i = 0; i < data.length; i++){
-    //   $("#destinationTarget").append("<img class='col-md-3' src=" + json.data[i].image + ">");
-    // console.log(destinations_list);
-    // console.log(json);
-    // }
+    for (var i = 0; i < json.length; i++){
+      $("#destinationTarget").append(`
+        <img class="col-md-3" src= ${json[i].image}  >`);
+    // console.log(destination_list);
+    console.log("Successfully responded with destinations: " + json);
+    }
     allDestinations = json;
   }
 

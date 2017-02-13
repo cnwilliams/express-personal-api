@@ -103,7 +103,7 @@ app.get("/api", function apiIndex(req, res) {
          res.status(500).send(err);
          return;
        }
-      console.log(destinations);
+      // console.log(destinations);
       res.json(destinations);
      });
   });

@@ -12,7 +12,7 @@ var destination_list = [
   //   latitude: Number,
   //   longitude: Number
   // },
-  image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/255px-Flag_of_Croatia.svg.png"
+  image: "#"  //"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/255px-Flag_of_Croatia.svg.png"
   },
   {
    countryName: "China",
@@ -30,7 +30,7 @@ var destination_list = [
    //   latitude: Number,
    //   longitude: Number
    // },
-   image: "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg"
+   image: "#" // "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg"
   }
 ];
 
