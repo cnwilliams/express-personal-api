@@ -40,15 +40,6 @@ var destination_list = [
    //   longitude: Number
    // },
    image: "images/mexico.jpg"
-  },
-  {
-   countryName: "Example",
-   budgetFriendly: true,
-   // gps: {
-   //   latitude: Number,
-   //   longitude: Number
-   // },
-   image: "#"
   }
 ];
 
