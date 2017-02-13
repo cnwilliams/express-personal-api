@@ -69,6 +69,11 @@ app.get("/api", function apiIndex(req, res) {
         description: "Existing destinations in database"
       },
       {
+        method: "GET",
+        path: "/api/destinations/:destinationId",
+        description: "Finds destination by id"
+      },
+      {
         method: "POST",
         path: "/api/destinations",
         description: "Creates a new destination entry"
@@ -108,9 +113,35 @@ app.get("/api", function apiIndex(req, res) {
      });
   });
 
+ app.get('/api/destinations/:id', function apiDestinationById(req, res) {
+  console.log(req.params)
+   // find one book by its id
+   var destinationId = req.params.id;
+    db.Destination.find({_id: destinationId}, function (err, theDestination){
+    if (err) { console.log("Error: " + err); }
+   // })
+   //   // populate the author
+   //   // .populate('author')
+   //   .exec(function(err, destinations){
+   //     if (err) {
+   //       res.status(500).send(err);
+   //       return;
+   //     }
+       res.json(theDestination);
+     });
+ });
 
 
-
+// app.get('/api/destinations/:id', function (req, res) {
+//   // find one book by its id
+//   console.log('destinations show', req.params);
+//   for(var i=0; i < destination.length; i++) {
+//     if (destination[i]._id === req.params.id) {
+//       res.json(destination[i]);
+//       break; // we found the right book, we can stop searching
+//     }
+//   }
+// });
 
 
 
