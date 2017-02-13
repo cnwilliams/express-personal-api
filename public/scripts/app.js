@@ -29,16 +29,16 @@ $(document).ready(function(){
     });
   });
 
-//     $booksList.on("click", ".deleteBtn", function() {
-//     $.ajax({
-//       method: "DELETE",
-//       url: "/api/books/" + $(this).attr("data-id"),
-//       success: deleteBookSuccess,
-//       error: deleteBookError
-//     });
-//   });
+  //   $booksList.on("click", ".deleteBtn", function() {
+  //   $.ajax({
+  //     method: "DELETE",
+  //     url: "/api/books/" + $(this).attr("data-id"),
+  //     success: deleteBookSuccess,
+  //     error: deleteBookError
+  //   });
+  // });
 
-// });
+});
 
 
 
@@ -85,8 +85,31 @@ function render() {
 
     for (var i = 0; i < json.length; i++){
       $(".destinationTarget").append(`
-        <img class="col-md-3" src= ${json[i].image}  >`);
+        <hr>
+        <p>
+          <br>
+          <b>Country:</b>
+          ${json[i].countryName}
+          <img class="col-md-3" src= ${json[i].image}>
+          <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${json[i]._id}>x</button>
+        </p>
+
+        `);
     // console.log(destination_list);
+    // <hr>
+    // <p>
+    //   <br>
+    //   <b>Country:</b>
+    //   ${json[i].countryName}
+    //   <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${json[i]._id}>Delete</button>
+    // </p>
+    // <form class="form-inline" id="addDestinationForm" data-id=${destination._id}>
+    //   <div class="form-group">
+    //     <input type="text" class="form-control" name="name" placeholder="Have any tips?">
+    //   </div>
+    //   <button type="submit" class="btn btn-default">Share</button>
+    // </form>
+    // `);
     console.log("Successfully responded with destinations: " + json);
     }
     allDestinations = json;

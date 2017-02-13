@@ -12,7 +12,16 @@ var destination_list = [
   //   latitude: Number,
   //   longitude: Number
   // },
-  image: "#"  //"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/255px-Flag_of_Croatia.svg.png"
+  image: "images/croatia-dubrovnik.jpg"
+  },
+  {
+   countryName: "Spain",
+   budgetFriendly: true,
+   // gps: {
+   //   latitude: Number,
+   //   longitude: Number
+   // },
+   image: "#"
   },
   {
    countryName: "China",
@@ -24,16 +33,7 @@ var destination_list = [
    image: "#"
   },
   {
-   countryName: "Italy",
-   budgetFriendly: true,
-   // gps: {
-   //   latitude: Number,
-   //   longitude: Number
-   // },
-   image: "#" // "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg"
-  },
-  {
-   countryName: "Spain",
+   countryName: "Mexico",
    budgetFriendly: true,
    // gps: {
    //   latitude: Number,
