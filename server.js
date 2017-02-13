@@ -130,7 +130,7 @@ app.post("/api/destinations", function newDestinationCreate(req, res) {
       return console.log("There was a save error: " + err);
     }
     console.log("Saved ", destination.countryName);
-    res.json(destination.countryName)
+    res.json(destination)
   })
 })
 

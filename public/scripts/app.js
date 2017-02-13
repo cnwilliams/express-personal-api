@@ -26,7 +26,8 @@ $(document).ready(function(){
     });
   });
 
-  $destinationsList.on("click", ".deleteBtn", function() {
+  $destinationsList.on("click", ".deleteBtn", function(e) {
+    // e.preventDefault(); Is 'e' needed
     $.ajax({
       method: "DELETE",
       url: "/api/destinations/" + $(this).attr("data-id"),
@@ -89,7 +90,7 @@ function newDestinationError() {
 // Needs work...
 function deleteDestinationSuccess(json) {
   var destination = json;
-  var destinationId = json[index]._id;
+  var destinationId = json._id;
   for(var index = 0; index < allDestinations.length; index++) {
     if(allDestinations[index]._id === destinationId) {
         allDestinations.splice(index, 1);
