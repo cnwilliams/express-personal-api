@@ -1,6 +1,6 @@
 // require express and other modules
-var express = require('express'),
-    app = express();
+var express = require('express');
+var app = express();
 
 // parse incoming urlencoded form data
 // and populate the req.body object
@@ -42,11 +42,10 @@ app.get('/', function homepage(req, res) {
  * JSON API Endpoints
  */
 
-app.get('/api', function apiIndex(req, res) {
+app.get("/api", function apiIndex(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
   res.json({
-    woopsIForgotToDocumentAllMyEndpoints: false, // CHANGE ME ;)
     message: "Welcome to my personal api! Here's what you need to know!",
     documentationUrl: "https://github.com/cnwilliams/express-personal-api/README.rd",
     baseUrl: "https://shrouded-falls-45449.herokuapp.com/",
@@ -96,17 +95,16 @@ app.get('/api', function apiIndex(req, res) {
  **********/
 
  // get all destinations
- app.get('/api/destinations', function (req, res) {
-   // find one book by its id
+ app.get('/api/destinations', function apiAllDestinations(req, res) {
    db.Destination.find({})
      // .populate() // ONLY USE FOR REFERENCE DATA
-     .exec (function(err, destination){
+     .exec( function(err, destinations){
        if (err) {
          res.status(500).send(err);
          return;
        }
-      console.log(destination);
-      res.json(destination);
+      console.log(destinations);
+      res.json(destinations);
      });
   });
 

@@ -3,18 +3,10 @@
 
 var db = require('./models');
 
-var DestinationSchema = new Schema({
-  country: String,
-  budgetFriendly: Boolean
-  // gps: {
-  //   latitude: Number,
-  //   longitude: Number
-  // },
-  image: String
-});
 
-var destination_list = {
-  country: "Croatia",
+var destination_list = [
+  {
+  countryName: "Croatia",
   budgetFriendly: false,
   // gps: {
   //   latitude: Number,
@@ -23,7 +15,7 @@ var destination_list = {
   image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/255px-Flag_of_Croatia.svg.png"
   },
   {
-   country: "China",
+   countryName: "China",
    budgetFriendly: true,
    // gps: {
    //   latitude: Number,
@@ -32,7 +24,7 @@ var destination_list = {
    image: "#"
   },
   {
-   country: "Italy",
+   countryName: "Italy",
    budgetFriendly: true,
    // gps: {
    //   latitude: Number,
@@ -40,7 +32,7 @@ var destination_list = {
    // },
    image: "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg"
   }
-);
+];
 
 
 
