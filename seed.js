@@ -34,43 +34,13 @@ var destination_list = [
   }
 ];
 
+ db.Destination.remove({}, function(err){
+  if (err) {console.log("Error: ", err);}
+  else {console.log("Emptied the database");}
 
-
-// db.Author.remove({}, function(err, authors) {
-//   console.log('removed all authors');
-//   db.Author.create(authors_list, function(err, authors){
-//     if (err) {
-//       console.log(err);
-//       return;
-//     }
-//     console.log('recreated all authors');
-//     console.log("created", authors.length, "authors");
-
-
-//     db.Book.remove({}, function(err, books){
-//       console.log('removed all books');
-//       books_list.forEach(function (bookData) {
-//         var book = new db.Book({
-//           title: bookData.title,
-//           image: bookData.image,
-//           releaseDate: bookData.releaseDate
-//         });
-//         db.Author.findOne({name: bookData.author}, function (err, foundAuthor) {
-//           console.log('found author ' + foundAuthor.name + ' for book ' + book.title);
-//           if (err) {
-//             console.log(err);
-//             return;
-//           }
-//           book.author = foundAuthor;
-//           book.save(function(err, savedBook){
-//             if (err) {
-//               return console.log(err);
-//             }
-//             console.log('saved ' + savedBook.title + ' by ' + foundAuthor.name);
-//           });
-//         });
-//       });
-//     });
-
-//   });
-// });
+  db.Destination.create(destination_list, function(err, destinations) {
+    if (err) {console.log("Error: ", err);}
+    console.log("created", destination_list.length, "desintations");
+    process.exit();
+  });
+});

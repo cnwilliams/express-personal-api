@@ -93,7 +93,7 @@ function render () {
 
 function handleError(e) {
   console.log("uh oh");
-  $('#destinationTarget').text("Failed to load books, is the server working?");
+  $('#destinationTarget').text("Failed to load destinations, is the server working?");
 }
 
 function newDestinationSuccess(json) {
