@@ -5,7 +5,6 @@ var allDestinations = []
 
 $(document).ready(function(){
 
-// your code
   $destinationsList = $(".destinationTarget")
 
   $.ajax({
@@ -15,8 +14,6 @@ $(document).ready(function(){
     success: handleSuccess,
     error: handleError
   });
-
-
 
   $("#newDestinationForm").on("submit", function(e) {
     e.preventDefault();
@@ -29,102 +26,59 @@ $(document).ready(function(){
     });
   });
 
-  //   $booksList.on("click", ".deleteBtn", function() {
-  //   $.ajax({
-  //     method: "DELETE",
-  //     url: "/api/books/" + $(this).attr("data-id"),
-  //     success: deleteBookSuccess,
-  //     error: deleteBookError
-  //   });
-  // });
-
+  $destinationsList.on("click", ".deleteBtn", function() {
+    $.ajax({
+      method: "DELETE",
+      url: "/api/destinations/" + $(this).attr("data-id"),
+      success: deleteDestinationSuccess,
+      error: deleteDestinationError
+    });
+  });
 });
 
 
 
-function getDestinationHtml(destination) {
-  return `<hr>
-          <p>
-            <br>
-            <b>Country:</b>
-            ${destination.countryName}
-            <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${destination._id}>Delete</button>
-          </p>
-          <form class="form-inline" id="addDestinationForm" data-id=${destination._id}>
-            <div class="form-group">
-              <input type="text" class="form-control" name="name" placeholder="Have any tips?">
-            </div>
-            <button type="submit" class="btn btn-default">Share</button>
-          </form>
-          `;
-}
-
-function getAllDestinationsHtml(destinations) {
-  return destinations.map(getDestinationHtml).join("");
-}
-
-
-function handleSuccess(json) {
-  allDestinations = json;
-  console.log(allDestinations);
-}
-
-
 function render() {
-  // empty existing posts from view
   $destinationsList.empty();
-
-  // pass `allBooks` into the template function
-  var destinationsHtml = getAllDestinationsHtml(allDestinations);
-
-  // append html to the view
-  $destinationsList.append(destinationsHtml);
+  $destinationsList.append(`
+    <br>
+    <hr>
+    <p>
+      <br>
+      <h3><b>Country:</b>
+      ${json.countryName} </h3>
+      <img class="img-responsive center-block" src="/images/world-map1-small">
+      <br>
+      <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${json._id}>x</button>
+    </p>
+  `);
 };
 
-  function handleSuccess(json) {
-
-    for (var i = 0; i < json.length; i++){
-      $(".destinationTarget").append(`
+function handleSuccess(json) {
+  for (var i = 0; i < json.length; i++){
+    $(".destinationTarget").append(`
+      <br>
+      <hr>
+      <p>
         <br>
-        <hr>
-        <p>
-          <br>
-          <h3><b>Country:</b>
-          ${json[i].countryName} </h3>
-          <img class="img-responsive center-block" src= ${json[i].image}>
-          <br>
-          <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${json[i]._id}>x</button>
-        </p>
-
-        `);
-    // console.log(destination_list);
-    // <hr>
-    // <p>
-    //   <br>
-    //   <b>Country:</b>
-    //   ${json[i].countryName}
-    //   <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${json[i]._id}>Delete</button>
-    // </p>
-    // <form class="form-inline" id="addDestinationForm" data-id=${destination._id}>
-    //   <div class="form-group">
-    //     <input type="text" class="form-control" name="name" placeholder="Have any tips?">
-    //   </div>
-    //   <button type="submit" class="btn btn-default">Share</button>
-    // </form>
-    // `);
-    console.log("Successfully responded with destinations: " + json);
-    }
-    allDestinations = json;
+        <h3><b>Country:</b>
+        ${json[i].countryName} </h3>
+        <img class="img-responsive center-block" src= ${json[i].image}>
+        <br>
+        <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${json[i]._id}>x</button>
+      </p>
+    `);
   }
+  allDestinations = json;
+}
 
 function handleError(e) {
-  console.log("uh oh");
-  $('#destinationTarget').text("Failed to load destinations, is the server working?");
+  $("#destinationTarget").text("Failed to load destinations, is the server working?");
 }
 
 function newDestinationSuccess(json) {
-  $('#newDestinationForm input').val('');
-  allDestinations.push(json);
+  var $newDestination = $("input.form-control").val("");
+  allDestinations.push($newDestination);
   render();
 }
 
@@ -132,6 +86,19 @@ function newDestinationError() {
   console.log("new destination error!");
 }
 
-// function deleteBookSuccess(json) {
-//   var book = json;
-//   var bookId = book._id;
+// Needs work...
+function deleteDestinationSuccess(json) {
+  var destination = json;
+  var destinationId = json[index]._id;
+  for(var index = 0; index < allDestinations.length; index++) {
+    if(allDestinations[index]._id === destinationId) {
+        allDestinations.splice(index, 1);
+        break;
+      }
+    }
+    render();
+  }
+
+  function deleteDestinationError() {
+  console.log("Destination deleting error!");
+}

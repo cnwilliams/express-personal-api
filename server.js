@@ -33,8 +33,8 @@ app.use(express.static('public'));
  * HTML Endpoints
  */
 
-app.get('/', function homepage(req, res) {
-  res.sendFile(__dirname + '/views/index.html');
+app.get("/", function homepage(req, res) {
+  res.sendFile(__dirname + "/views/index.html");
 });
 
 
@@ -43,8 +43,6 @@ app.get('/', function homepage(req, res) {
  */
 
 app.get("/api", function apiIndex(req, res) {
-  // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
-  // It would be seriously overkill to save any of this to your database.
   res.json({
     message: "Welcome to my personal api! Here's what you need to know!",
     documentationUrl: "https://github.com/cnwilliams/express-personal-api/README.rd",
@@ -95,14 +93,11 @@ app.get("/api", function apiIndex(req, res) {
 });
 
 
-
-
 /**********
  * SERVER *
  **********/
 
- // get all destinations
-app.get('/api/destinations', function destinationIndex(req, res) {
+app.get("/api/destinations", function destinationIndex(req, res) {
   db.Destination.find({})
     .exec( function(err, destinations){
       if (err) {
@@ -116,7 +111,6 @@ app.get('/api/destinations', function destinationIndex(req, res) {
 // find one destination by its id
 app.get("/api/destinations/:id", function destinationShow(req, res) {
   var destinationId = req.params.id;
-  console.log(destinationId);
   db.Destination.find({_id: destinationId}, function (err, theDestination){
   if (err) { console.log("Error: " + err); }
   res.json(theDestination);
@@ -141,13 +135,21 @@ app.post("/api/destinations", function newDestinationCreate(req, res) {
 })
 
 
-// app.post("/api/destinations", function destinationCreate(req, res) {
-//   var destinationRecommendation = req.body;
-//   db.Destination.create(destinationRecommendation, function(err, newDestinationRecommendation) {
-//     if (err) { console.log(err); }
-//     res.send(newDestinationRecommendation)
-//   });
-// });
+app.post("/api/destinations", function destinationCreate(req, res) {
+  var destinationRecommendation = req.body;
+  db.Destination.create(destinationRecommendation, function(err, newDestinationRecommendation) {
+    if (err) { console.log(err); }
+    res.send(newDestinationRecommendation)
+  });
+});
+
+app.delete("/api/destinations/:id", function destinationDestroy(req, res) {
+  var destinationId = req.params.id;
+  db.Destination.findOneAndRemove({_id: destinationId}, function(err, destination){
+    if (err) { console.log("Error: " + err) }
+    res.sendStatus(204);
+  });
+});
 
 
 

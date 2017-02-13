@@ -1,4 +1,26 @@
+# Personal API
+This is an API that features several destinations that I have visited, and allows users to submit recommendations for other desinations to check out.
+
+# Technologies Used
+* HTML
+* CSS
+* Bootstrap
+* JavaScript
+* jQuery
+* AJAX
+
+# Existing Features
+* Text and images are posted on the page from the database
+* Recommendations can be added via the input form
+
+# Planned Features
+* Restore the ability to delete entries
+* Fully upload data to Heroku
+* Allow users to update entries
+* Parallax background
+
 # Credits
+
 Images
 
 Croatia:
