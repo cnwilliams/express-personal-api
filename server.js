@@ -50,8 +50,10 @@ app.get("/api", function apiIndex(req, res) {
     documentationUrl: "https://github.com/cnwilliams/express-personal-api/README.rd",
     baseUrl: "https://shrouded-falls-45449.herokuapp.com/",
     currentCity: "San Francisco",
-    // isAwake: boolean,
-    // favoriteIceCreamFlavor: "Mint Chocolate Chip",
+    pets: [
+      {name: "Peeps", type: "Cat", breed: "Feral"}, {name: "Cocoa", type: "Dog", breed: "Pomeranian"}
+      ],
+
     endpoints: [
       {
         method: "GET",
@@ -70,7 +72,7 @@ app.get("/api", function apiIndex(req, res) {
       },
       {
         method: "GET",
-        path: "/api/destinations/:destinationId",
+        path: "/api/destinations/:id",
         description: "Finds destination by id"
       },
       {
@@ -100,53 +102,56 @@ app.get("/api", function apiIndex(req, res) {
  **********/
 
  // get all destinations
- app.get('/api/destinations', function apiAllDestinations(req, res) {
-   db.Destination.find({})
-     // .populate() // ONLY USE FOR REFERENCE DATA
-     .exec( function(err, destinations){
-       if (err) {
-         res.status(500).send(err);
-         return;
-       }
-      // console.log(destinations);
+app.get('/api/destinations', function destinationIndex(req, res) {
+  db.Destination.find({})
+    .exec( function(err, destinations){
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
       res.json(destinations);
-     });
+    });
+});
+
+// find one destination by its id
+app.get("/api/destinations/:id", function destinationShow(req, res) {
+  var destinationId = req.params.id;
+  console.log(destinationId);
+  db.Destination.find({_id: destinationId}, function (err, theDestination){
+  if (err) { console.log("Error: " + err); }
+  res.json(theDestination);
+  });
+});
+
+// create new destination
+app.post("/api/destinations", function newDestinationCreate(req, res) {
+  var newDestination = new db.Destination({
+    countryName: req.body.countryName,
+    budgetFriendly: req.body.budgetFriendly,
+    image: req.body.image
   });
 
- app.get('/api/destinations/:id', function apiDestinationById(req, res) {
-  console.log(req.params)
-   // find one book by its id
-   var destinationId = req.params.id;
-    db.Destination.find({_id: destinationId}, function (err, theDestination){
-    if (err) { console.log("Error: " + err); }
-   // })
-   //   // populate the author
-   //   // .populate('author')
-   //   .exec(function(err, destinations){
-   //     if (err) {
-   //       res.status(500).send(err);
-   //       return;
-   //     }
-       res.json(theDestination);
-     });
- });
+  newDestination.save(function(err, destination){
+    if (err) {
+      return console.log("There was a save error: " + err);
+    }
+    console.log("Saved ", destination.countryName);
+    res.json(destination);
+  });
+});
 
 
-// app.get('/api/destinations/:id', function (req, res) {
-//   // find one book by its id
-//   console.log('destinations show', req.params);
-//   for(var i=0; i < destination.length; i++) {
-//     if (destination[i]._id === req.params.id) {
-//       res.json(destination[i]);
-//       break; // we found the right book, we can stop searching
-//     }
-//   }
+// app.post("/api/destinations", function destinationCreate(req, res) {
+//   var destinationRecommendation = req.body;
+//   db.Destination.create(destinationRecommendation, function(err, newDestinationRecommendation) {
+//     if (err) { console.log(err); }
+//     res.send(newDestinationRecommendation)
+//   });
 // });
-
 
 
 
 // listen on port 3000
 app.listen(process.env.PORT || 3000, function () {
-  console.log('Express server is up and running on http://localhost:3000/');
+  console.log("Express server is up and running on http://localhost:3000/");
 });

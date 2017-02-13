@@ -6,6 +6,7 @@ var allDestinations = []
 $(document).ready(function(){
 
 // your code
+  $destinationsList = $(".destinationTarget")
 
   $.ajax({
     method: "GET",
@@ -28,33 +29,32 @@ $(document).ready(function(){
     });
   });
 
-    // $booksList.on('click', '.deleteBtn', function() {
-  //   $.ajax({
-  //     method: 'DELETE',
-  //     url: '/api/books/'+$(this).attr('data-id'),
-  //     success: deleteBookSuccess,
-  //     error: deleteBookError
-  //   });
-  // });
+//     $booksList.on("click", ".deleteBtn", function() {
+//     $.ajax({
+//       method: "DELETE",
+//       url: "/api/books/" + $(this).attr("data-id"),
+//       success: deleteBookSuccess,
+//       error: deleteBookError
+//     });
+//   });
 
-});
+// });
 
 
 
 function getDestinationHtml(destination) {
   return `<hr>
           <p>
-            <b>${"destination.countryName"}</b>
             <br>
-            // <b>Characters:</b>
-            // ${getAllCharactersHtml(book.id, book.characters)}
-            // <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${destination._id}>Delete</button>
+            <b>Country:</b>
+            ${destination.countryName}
+            <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${destination._id}>Delete</button>
           </p>
-          // <form class="form-inline" id="addCharacterForm" data-id=${book._id}>
-          //   <div class="form-group">
-          //     <input type="text" class="form-control" name="name" placeholder="Book character">
-          //   </div>
-          //   <button type="submit" class="btn btn-default">Add character</button>
+          <form class="form-inline" id="addDestinationForm" data-id=${destination._id}>
+            <div class="form-group">
+              <input type="text" class="form-control" name="name" placeholder="Have any tips?">
+            </div>
+            <button type="submit" class="btn btn-default">Share</button>
           </form>
           `;
 }
@@ -64,13 +64,13 @@ function getAllDestinationsHtml(destinations) {
 }
 
 
-// function handleSuccess(json) {
-//   allDestinations = json;
-//   console.log(allDestinations);
-// }
+function handleSuccess(json) {
+  allDestinations = json;
+  console.log(allDestinations);
+}
 
 
-function render () {
+function render() {
   // empty existing posts from view
   $destinationsList.empty();
 
@@ -84,7 +84,7 @@ function render () {
   function handleSuccess(json) {
 
     for (var i = 0; i < json.length; i++){
-      $("#destinationTarget").append(`
+      $(".destinationTarget").append(`
         <img class="col-md-3" src= ${json[i].image}  >`);
     // console.log(destination_list);
     console.log("Successfully responded with destinations: " + json);

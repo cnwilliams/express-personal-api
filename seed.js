@@ -31,10 +31,19 @@ var destination_list = [
    //   longitude: Number
    // },
    image: "#" // "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg"
+  },
+  {
+   countryName: "Spain",
+   budgetFriendly: true,
+   // gps: {
+   //   latitude: Number,
+   //   longitude: Number
+   // },
+   image: "#"
   }
 ];
 
- db.Destination.remove({}, function(err){
+db.Destination.remove({}, function(err){
   if (err) {console.log("Error: ", err);}
   else {console.log("Emptied the database");}
 
