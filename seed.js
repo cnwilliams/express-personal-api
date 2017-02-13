@@ -12,7 +12,7 @@ var destination_list = [
   //   latitude: Number,
   //   longitude: Number
   // },
-  image: "images/croatia-dubrovnik.jpg"
+  image: "images/croatia.jpg"
   },
   {
    countryName: "Spain",
@@ -21,7 +21,7 @@ var destination_list = [
    //   latitude: Number,
    //   longitude: Number
    // },
-   image: "#"
+   image: "images/spain.jpg"
   },
   {
    countryName: "China",
@@ -30,7 +30,7 @@ var destination_list = [
    //   latitude: Number,
    //   longitude: Number
    // },
-   image: "#"
+   image: "images/china.jpg"
   },
   {
    countryName: "Mexico",
@@ -39,7 +39,7 @@ var destination_list = [
    //   latitude: Number,
    //   longitude: Number
    // },
-   image: "#"
+   image: "images/mexico.jpg"
   }
 ];
 
